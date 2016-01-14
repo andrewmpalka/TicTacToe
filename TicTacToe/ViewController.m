@@ -26,12 +26,18 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    self.whichPlayerLabel.text = @"Your turn!";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 
 -(IBAction)onButtonTapped:(UIButton *)sender {
+    if (self.whichPlayerlabel.text) {
+        <#statements#>
+    } else {
+        <#statements#>
+    }
 }
 
 
