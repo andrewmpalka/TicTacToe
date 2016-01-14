@@ -31,6 +31,15 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (NSString *)whoWon:(NSString *)answer {
+    if ([answer isEqualToString:@"Your turn!"]) {
+        self.whichPlayerLabel.text = [NSString stringWithFormat:@"You Won"];
+        return self.whichPlayerLabel.text;
+    } else {
+        self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer Won"];
+        return self.whichPlayerLabel.text;
+    }
+}
 
 -(IBAction)onButtonTapped:(UIButton *)sender {
     if (self.whichPlayerlabel.text) {
