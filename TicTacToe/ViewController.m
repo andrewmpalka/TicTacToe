@@ -30,9 +30,27 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
-//-(BOOL)isGameOver:()player1, (NSString *)player2 {
-//    if
-//}
+-(BOOL)isGameOver:(UIButton *)sender {
+    if (![sender isEnabled]) {
+        /// 1
+        if (![self.buttonOne isEnabled] ){
+            if (![self.buttonTwo isEnabled]) {
+                if (![self.buttonThree isEnabled]) {
+                    return TRUE;
+                }
+            }
+        } else if (![self.buttonFour isEnabled]){
+            if (![self.buttonSeven isEnabled]) {
+                return TRUE;
+            }
+        }  else if (![self.buttonFive isEnabled]){
+            if (![self.buttonNine isEnabled]) {
+                return TRUE;
+            }
+        }
+    }
+    return NO;
+}
 
 - (NSString *)whoWon:(NSString *)answer {
     if ([answer isEqualToString:@"Your turn!"]) {
@@ -50,7 +68,9 @@
         [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
-        
+        if (YES == isGameOver]) {
+            <#statements#>
+        }
         
     } else {
         [sender setTitle:@"O" forState:UIControlStateNormal];
