@@ -30,8 +30,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
--(BOOL)isGameOver:(UIButton *)sender {
-    if (![sender isEnabled]) {
+
+-(BOOL)isGameOver1:(NSString *)senderLabelText {
+    if ([senderLabelText isEqualToString:@"X"]) {
         /// 1
         if (![self.buttonOne isEnabled] ){
             if (![self.buttonTwo isEnabled]) {
@@ -48,9 +49,106 @@
                 return TRUE;
             }
         }
+     
+     //2
+     if (![self.buttonTwo isEnabled]) {
+        if (![self.buttonFive isEnabled]) {
+            if (![self.buttonEight isEnabled]) {
+                return TRUE;
+            }
+        }
+    } 
+        
+    return NO;
+    
+    //3
+    } if (![self.buttonThree isEnabled]) {
+        if (![self.buttonSix isEnabled]) {
+            if (![self.buttonNine isEnabled]) {
+                return  TRUE;
+            }
+        }
+    //4
+    } if (![self.buttonFour isEnabled]) {
+        if (![self.buttonFive isEnabled]) {
+            if (![self.buttonSix isEnabled]) {
+                return TRUE;
+            }
+        }
+    //7
+    } if (![self.buttonSeven isEnabled]) {
+        if (![self.buttonEight isEnabled]) {
+            if (![self.buttonNine isEnabled]) {
+                return true;
+            }
+        } else if (![self.buttonFive isEnabled]){
+            if (![self.buttonThree isEnabled]) {
+                return true;
+            }
+        }
     }
     return NO;
 }
+
+-(BOOL)isGameOver2:(NSString *)senderLabelText {
+    if ([senderLabelText isEqualToString:@"O"]) {
+        /// 1
+        if (![self.buttonOne isEnabled] ){
+            if (![self.buttonTwo isEnabled]) {
+                if (![self.buttonThree isEnabled]) {
+                    return TRUE;
+                }
+            }
+        } else if (![self.buttonFour isEnabled]){
+            if (![self.buttonSeven isEnabled]) {
+                return TRUE;
+            }
+        }  else if (![self.buttonFive isEnabled]){
+            if (![self.buttonNine isEnabled]) {
+                return TRUE;
+            }
+        }
+        
+        //2
+        if (![self.buttonTwo isEnabled]) {
+            if (![self.buttonFive isEnabled]) {
+                if (![self.buttonEight isEnabled]) {
+                    return TRUE;
+                }
+            }
+        }
+        
+        return NO;
+        
+        //3
+    } if (![self.buttonThree isEnabled]) {
+        if (![self.buttonSix isEnabled]) {
+            if (![self.buttonNine isEnabled]) {
+                return  TRUE;
+            }
+        }
+        //4
+    } if (![self.buttonFour isEnabled]) {
+        if (![self.buttonFive isEnabled]) {
+            if (![self.buttonSix isEnabled]) {
+                return TRUE;
+            }
+        }
+        //7
+    } if (![self.buttonSeven isEnabled]) {
+        if (![self.buttonEight isEnabled]) {
+            if (![self.buttonNine isEnabled]) {
+                return true;
+            }
+        } else if (![self.buttonFive isEnabled]){
+            if (![self.buttonThree isEnabled]) {
+                return true;
+            }
+        }
+    }
+    return NO;
+}
+
 
 - (NSString *)whoWon:(NSString *)answer {
     if ([answer isEqualToString:@"Your turn!"]) {
@@ -68,7 +166,8 @@
         [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
-        if (YES == isGameOver]) {
+        BOOL check = YES;
+        if (check == [[NSString stringWithFormat:@"%@", sender.textInputContextIdentifier] isGameOver1]);
             <#statements#>
         }
         
