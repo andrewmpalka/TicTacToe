@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonSeven;
 @property (weak, nonatomic) IBOutlet UIButton *buttonEight;
 @property (weak, nonatomic) IBOutlet UIButton *buttonNine;
+@property (weak, nonatomic) IBOutlet UILabel *whichPlayerLabel;
 
 
 @end
