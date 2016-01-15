@@ -31,73 +31,66 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
--(BOOL)isGameOver:(NSString *)senderLabelText tag:(NSString *)senderTag; {
-    if ([senderLabelText isEqualToString:senderTag]) {
-        /// 1
-        if (![self.buttonOne isEnabled] ){
-            if (![self.buttonTwo isEnabled]) {
-                if (![self.buttonThree isEnabled]) {
-                    return TRUE;
-                }
-            }
-        } else if (![self.buttonFour isEnabled]){
-            if (![self.buttonSeven isEnabled]) {
-                return TRUE;
-            }
-        }  else if (![self.buttonFive isEnabled]){
-            if (![self.buttonNine isEnabled]) {
+-(BOOL)isGameOver:(NSString *)tag {
+    /// 1
+    if ([self.buttonOne.titleLabel.text isEqualToString:tag] ){
+        if ([self.buttonTwo.titleLabel.text isEqualToString:tag]) {
+            if ([self.buttonThree.titleLabel.text isEqualToString:tag]) {
                 return TRUE;
             }
         }
-        
+        else if ([self.buttonFour.titleLabel.text isEqualToString:tag]){
+            if ([self.buttonSeven.titleLabel.text isEqualToString:tag]) {
+                return TRUE;
+            }
+            else if ([self.buttonFive.titleLabel.text isEqualToString:tag]){
+                if ([self.buttonNine.titleLabel.text isEqualToString:tag]) {
+                    return TRUE;
+                }
+            }
+        }
         //2
-        if (![self.buttonTwo isEnabled]) {
-            if (![self.buttonFive isEnabled]) {
-                if (![self.buttonEight isEnabled]) {
-                    return TRUE;
-                }
-            }
-        }
-        
-        return NO;
-        
-        //3
-    } if (![self.buttonThree isEnabled]) {
-        if (![self.buttonSix isEnabled]) {
-            if (![self.buttonNine isEnabled]) {
-                return  TRUE;
-            }
-        }
-        //4
-    } if (![self.buttonFour isEnabled]) {
-        if (![self.buttonFive isEnabled]) {
-            if (![self.buttonSix isEnabled]) {
+    } else if ([self.buttonTwo.titleLabel.text isEqualToString:tag]) {
+        if ( [self.buttonFive.titleLabel.text isEqualToString:tag]) {
+            if ( [self.buttonEight.titleLabel.text isEqualToString:tag]) {
                 return TRUE;
             }
         }
-        //7
-    } if (![self.buttonSeven isEnabled]) {
-        if (![self.buttonEight isEnabled]) {
-            if (![self.buttonNine isEnabled]) {
-                return true;
-            }
-        } else if (![self.buttonFive isEnabled]){
-            if (![self.buttonThree isEnabled]) {
-                return true;
-            }
+    //3
+} else if ([self.buttonThree.titleLabel.text isEqualToString:tag]) {
+    if ( [self.buttonSix.titleLabel.text isEqualToString:tag]) {
+        if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
+            return  TRUE;
         }
     }
-    return NO;
+
+    //4
+} else if ( [self.buttonFour.titleLabel.text isEqualToString:tag]) {
+    if ( [self.buttonFive.titleLabel.text isEqualToString:tag]) {
+        if ( [self.buttonSix.titleLabel.text isEqualToString:tag]) {
+            return TRUE;
+        }
+    }
+    //7
+} else if ( [self.buttonSeven.titleLabel.text isEqualToString:tag]) {
+    if ( [self.buttonEight.titleLabel.text isEqualToString:tag]) {
+        if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
+            return true;
+        }
+    } else if ( [self.buttonFive.titleLabel.text isEqualToString:tag]){
+        if ( [self.buttonThree.titleLabel.text isEqualToString:tag]) {
+            return true;
+        }
+    }
+}
+return NO;
 }
 
-
-- (NSString *)whoWon:(NSString *)answer {
-    if ([answer isEqualToString:@"Your turn!"]) {
+- (void)whoWon:(NSString *)answer {
+    if ([answer isEqualToString:@"X"]){
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"You Won"];
-        return self.whichPlayerLabel.text;
-    } else {
+        } else {
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer Won"];
-        return self.whichPlayerLabel.text;
     }
 }
 
@@ -108,16 +101,17 @@
         [sender setEnabled:NO];
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
         
-        if ([self isGameOver:self.whichPlayerLabel.text tag:@"X"]) {
-            self.whichPlayerLabel.text = [self whoWon:self.whichPlayerLabel.text];
+        if ([self isGameOver:sender.titleLabel.text]) {
+            [self whoWon:sender.titleLabel.text];
         }
     } else {
         [sender setTitle:@"O" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Your turn!"];
-        if ([self isGameOver:self.whichPlayerLabel.text tag:@"0"]){
-            self.whichPlayerLabel.text = [self whoWon:self.whichPlayerLabel.text];
+        
+        if ([self isGameOver:sender.titleLabel.text]){
+         [self whoWon:sender.titleLabel.text];
         }
 
 
