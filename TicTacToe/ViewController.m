@@ -50,14 +50,14 @@
             }
         }
         //2
-    } else if ([self.buttonTwo.titleLabel.text isEqualToString:tag]) {
+    } if ([self.buttonTwo.titleLabel.text isEqualToString:tag]) {
         if ( [self.buttonFive.titleLabel.text isEqualToString:tag]) {
             if ( [self.buttonEight.titleLabel.text isEqualToString:tag]) {
                 return TRUE;
             }
         }
         //3
-    } else if ([self.buttonThree.titleLabel.text isEqualToString:tag]) {
+    } if ([self.buttonThree.titleLabel.text isEqualToString:tag]) {
         if ( [self.buttonSix.titleLabel.text isEqualToString:tag]) {
             if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
                 return  TRUE;
@@ -65,14 +65,14 @@
         }
         
         //4
-    } else if ( [self.buttonFour.titleLabel.text isEqualToString:tag]) {
+    } if ( [self.buttonFour.titleLabel.text isEqualToString:tag]) {
         if ( [self.buttonFive.titleLabel.text isEqualToString:tag]) {
             if ( [self.buttonSix.titleLabel.text isEqualToString:tag]) {
                 return TRUE;
             }
         }
         //7
-    } else if ( [self.buttonSeven.titleLabel.text isEqualToString:tag]) {
+    } if ( [self.buttonSeven.titleLabel.text isEqualToString:tag]) {
         if ( [self.buttonEight.titleLabel.text isEqualToString:tag]) {
             if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
                 return true;
@@ -86,8 +86,8 @@
     return NO;
 }
 
-- (void)whoWon:(NSString *)answer {
-    if ([answer isEqualToString:@"X"]){
+- (void)whoWon:(NSString *)tag {
+    if ([tag isEqualToString:@"X"]){
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"You Won"];
         } else {
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer Won"];
@@ -95,7 +95,7 @@
 }
 
 -(IBAction)onButtonTapped:(UIButton *)sender {
-    if ([self.whichPlayerLabel.text isEqualToString:@"Your turn!"]) {
+      if ([self.whichPlayerLabel.text isEqualToString:@"Your turn!"]) {
         [sender setTitle:@"X" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
@@ -103,7 +103,6 @@
         if ([self isGameOver:sender.titleLabel.text]) {
             [self whoWon:sender.titleLabel.text];
         }
-        
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
     } else {
         [sender setTitle:@"O" forState:UIControlStateNormal];
