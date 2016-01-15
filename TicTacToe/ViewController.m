@@ -19,8 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *buttonEight;
 @property (weak, nonatomic) IBOutlet UIButton *buttonNine;
 @property (weak, nonatomic) IBOutlet UILabel *whichPlayerLabel;
-
-
 @end
 
 @implementation ViewController
@@ -33,56 +31,57 @@
 
 -(BOOL)isGameOver:(NSString *)tag {
     /// 1
-    if ([self.buttonOne.titleLabel.text isEqualToString:tag] ){
-        if ([self.buttonTwo.titleLabel.text isEqualToString:tag]) {
-            if ([self.buttonThree.titleLabel.text isEqualToString:tag]) {
+    if ([self.buttonOne.currentTitle isEqualToString:tag] ){
+        if ([self.buttonTwo.currentTitle isEqualToString:tag]) {
+            if ([self.buttonThree.currentTitle isEqualToString:tag]) {
                 return TRUE;
             }
         }
-        else if ([self.buttonFour.titleLabel.text isEqualToString:tag]){
-            if ([self.buttonSeven.titleLabel.text isEqualToString:tag]) {
+        else if ([self.buttonFour.currentTitle isEqualToString:tag]){
+            if ([self.buttonSeven.currentTitle isEqualToString:tag]) {
                 return TRUE;
             }
-            else if ([self.buttonFive.titleLabel.text isEqualToString:tag]){
-                if ([self.buttonNine.titleLabel.text isEqualToString:tag]) {
+            else if ([self.buttonFive.currentTitle isEqualToString:tag]){
+                if ([self.buttonNine.currentTitle isEqualToString:tag]) {
                     return TRUE;
                 }
             }
         }
         //2
-    } if ([self.buttonTwo.titleLabel.text isEqualToString:tag]) {
-        if ( [self.buttonFive.titleLabel.text isEqualToString:tag]) {
-            if ( [self.buttonEight.titleLabel.text isEqualToString:tag]) {
+    } if ([self.buttonTwo.currentTitle isEqualToString:tag]) {
+        if ( [self.buttonFive.currentTitle isEqualToString:tag]) {
+            if ( [self.buttonEight.currentTitle isEqualToString:tag]) {
                 return TRUE;
             }
         }
         //3
-    } if ([self.buttonThree.titleLabel.text isEqualToString:tag]) {
-        if ( [self.buttonSix.titleLabel.text isEqualToString:tag]) {
-            if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
+    } if ([self.buttonThree.currentTitle isEqualToString:tag]) {
+        if ( [self.buttonSix.currentTitle isEqualToString:tag]) {
+            if ( [self.buttonNine.currentTitle isEqualToString:tag]) {
                 return  TRUE;
             }
         }
         
         //4
-    } if ( [self.buttonFour.titleLabel.text isEqualToString:tag]) {
-        if ( [self.buttonFive.titleLabel.text isEqualToString:tag]) {
-            if ( [self.buttonSix.titleLabel.text isEqualToString:tag]) {
+    } if ( [self.buttonFour.currentTitle isEqualToString:tag]) {
+        if ( [self.buttonFive.currentTitle isEqualToString:tag]) {
+            if ( [self.buttonSix.currentTitle isEqualToString:tag]) {
                 return TRUE;
             }
         }
         //7
-    } if ( [self.buttonSeven.titleLabel.text isEqualToString:tag]) {
-        if ( [self.buttonEight.titleLabel.text isEqualToString:tag]) {
-            if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
+    } if ( [self.buttonSeven.currentTitle isEqualToString:tag]) {
+        if ( [self.buttonEight.currentTitle isEqualToString:tag]) {
+            if ( [self.buttonNine.currentTitle isEqualToString:tag]) {
                 return true;
             }
-        } else if ( [self.buttonFive.titleLabel.text isEqualToString:tag]){
-            if ( [self.buttonThree.titleLabel.text isEqualToString:tag]) {
+        } else if ( [self.buttonFive.currentTitle isEqualToString:tag]){
+            if ( [self.buttonThree.currentTitle isEqualToString:tag]) {
                 return true;
             }
         }
     }
+    NSLog([NSString stringWithFormat:@"%@%@",self.buttonOne.currentTitle,tag]);
     return NO;
 }
 
@@ -99,18 +98,20 @@
         [sender setTitle:@"X" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
+          NSLog(sender.currentTitle);
 
-        if ([self isGameOver:sender.titleLabel.text]) {
-            [self whoWon:sender.titleLabel.text];
+        if ([self isGameOver:sender.currentTitle]) {
+            [self whoWon:sender.currentTitle];
         }
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
     } else {
         [sender setTitle:@"O" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
-        
-        if ([self isGameOver:sender.titleLabel.text]){
-            [self whoWon:sender.titleLabel.text];
+        NSLog(sender.currentTitle);
+
+        if ([self isGameOver:sender.currentTitle]){
+            [self whoWon:sender.currentTitle];
         }
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Your turn!"];
     }
