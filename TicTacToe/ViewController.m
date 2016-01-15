@@ -166,19 +166,23 @@
         [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
-        BOOL check = YES;
-        if (check == [[NSString stringWithFormat:@"%@", sender.textInputContextIdentifier] isGameOver1]);
-            <#statements#>
-        }
-        
+//        
+//        if ([self isGameOver1:self.whichPlayerLabel.text]) {
+//            self.whichPlayerLabel.text = [self whoWon:self.whichPlayerLabel.text];
+    
     } else {
         [sender setTitle:@"O" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Your turn!"];
+        if ([self isGameOver2:self.whichPlayerLabel.text]){
+            self.whichPlayerLabel.text = [self whoWon:self.whichPlayerLabel.text];
+        }
+
 
     }
-}
+
+    }
 
 
 @end
