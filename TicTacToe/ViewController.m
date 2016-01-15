@@ -34,7 +34,9 @@
     if ([self.buttonOne.currentTitle isEqualToString:tag] ){
         if ([self.buttonTwo.currentTitle isEqualToString:tag]) {
             if ([self.buttonThree.currentTitle isEqualToString:tag]) {
+                NSLog(@"Reached");
                 return TRUE;
+
             }
         }
         else if ([self.buttonFour.currentTitle isEqualToString:tag]){
@@ -81,7 +83,7 @@
             }
         }
     }
-    NSLog([NSString stringWithFormat:@"%@%@",self.buttonOne.currentTitle,tag]);
+    NSLog([NSString stringWithFormat:@"button1%@tag%@",self.buttonOne.currentTitle,tag]);
     return NO;
 }
 
@@ -102,8 +104,9 @@
 
         if ([self isGameOver:sender.currentTitle]) {
             [self whoWon:sender.currentTitle];
-        }
+        } else {
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
+        }
     } else {
         [sender setTitle:@"O" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -112,9 +115,10 @@
 
         if ([self isGameOver:sender.currentTitle]){
             [self whoWon:sender.currentTitle];
-        }
+        } else {
         self.whichPlayerLabel.text = [NSString stringWithFormat:@"Your turn!"];
-    }
+        }
+        }
     
 }
 
