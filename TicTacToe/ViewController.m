@@ -56,34 +56,34 @@
                 return TRUE;
             }
         }
-    //3
-} else if ([self.buttonThree.titleLabel.text isEqualToString:tag]) {
-    if ( [self.buttonSix.titleLabel.text isEqualToString:tag]) {
-        if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
-            return  TRUE;
-        }
-    }
-
-    //4
-} else if ( [self.buttonFour.titleLabel.text isEqualToString:tag]) {
-    if ( [self.buttonFive.titleLabel.text isEqualToString:tag]) {
+        //3
+    } else if ([self.buttonThree.titleLabel.text isEqualToString:tag]) {
         if ( [self.buttonSix.titleLabel.text isEqualToString:tag]) {
-            return TRUE;
+            if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
+                return  TRUE;
+            }
+        }
+        
+        //4
+    } else if ( [self.buttonFour.titleLabel.text isEqualToString:tag]) {
+        if ( [self.buttonFive.titleLabel.text isEqualToString:tag]) {
+            if ( [self.buttonSix.titleLabel.text isEqualToString:tag]) {
+                return TRUE;
+            }
+        }
+        //7
+    } else if ( [self.buttonSeven.titleLabel.text isEqualToString:tag]) {
+        if ( [self.buttonEight.titleLabel.text isEqualToString:tag]) {
+            if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
+                return true;
+            }
+        } else if ( [self.buttonFive.titleLabel.text isEqualToString:tag]){
+            if ( [self.buttonThree.titleLabel.text isEqualToString:tag]) {
+                return true;
+            }
         }
     }
-    //7
-} else if ( [self.buttonSeven.titleLabel.text isEqualToString:tag]) {
-    if ( [self.buttonEight.titleLabel.text isEqualToString:tag]) {
-        if ( [self.buttonNine.titleLabel.text isEqualToString:tag]) {
-            return true;
-        }
-    } else if ( [self.buttonFive.titleLabel.text isEqualToString:tag]){
-        if ( [self.buttonThree.titleLabel.text isEqualToString:tag]) {
-            return true;
-        }
-    }
-}
-return NO;
+    return NO;
 }
 
 - (void)whoWon:(NSString *)answer {
@@ -99,25 +99,24 @@ return NO;
         [sender setTitle:@"X" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
-        self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
-        
+
         if ([self isGameOver:sender.titleLabel.text]) {
             [self whoWon:sender.titleLabel.text];
         }
+        
+        self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
     } else {
         [sender setTitle:@"O" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
-        self.whichPlayerLabel.text = [NSString stringWithFormat:@"Your turn!"];
         
         if ([self isGameOver:sender.titleLabel.text]){
-         [self whoWon:sender.titleLabel.text];
+            [self whoWon:sender.titleLabel.text];
         }
-
-
+        self.whichPlayerLabel.text = [NSString stringWithFormat:@"Your turn!"];
     }
     
-    }
+}
 
 
 @end
