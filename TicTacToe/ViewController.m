@@ -33,6 +33,7 @@
     
     for (UIButton *button in buttonArray) {
         [button setTitle:@"" forState:UIControlStateNormal];
+        [button setEnabled:YES];
     }
 }
 
