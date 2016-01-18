@@ -29,6 +29,11 @@
     self.whichPlayerLabel.text = @"Your turn!";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    NSArray *buttonArray = @[self.buttonOne, self.buttonTwo, self.buttonThree, self.buttonFour, self.buttonFive, self.buttonSix, self.buttonSeven, self.buttonEight];
+    
+    for (UIButton *button in buttonArray) {
+        [button setTitle:@"" forState:UIControlStateNormal];
+    }
 }
 
 -(BOOL)isGameOver:(NSString *)tag {
@@ -90,10 +95,24 @@
 }
 
 - (void)whoWon:(NSString *)tag {
+    self.whichPlayerLabel.text = [NSString stringWithFormat:@"Game Over"];
     if ([tag isEqualToString:@"X"]){
-        self.whichPlayerLabel.text = [NSString stringWithFormat:@"You Won"];
+//        self.whichPlayerLabel.text = [NSString stringWithFormat:@"You Won"];
+        UIAlertController *winner = [UIAlertController alertControllerWithTitle:@"You Won!" message:@"Congrats!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *reset = [UIAlertAction actionWithTitle:@"Play Again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self viewDidLoad];
+        }];
+        [self presentViewController:winner animated:YES completion:nil];
+        [winner addAction:reset];
+        
         } else {
-        self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer Won"];
+//        self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer Won"];
+            UIAlertController *winner = [UIAlertController alertControllerWithTitle:@"Computer Won!" message:@"Sorry!!" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *reset = [UIAlertAction actionWithTitle:@"Play Again" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                [self viewDidLoad];
+            }];
+            [self presentViewController:winner animated:YES completion:nil];
+            [winner addAction:reset];
     }
 }
 
