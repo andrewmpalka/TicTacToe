@@ -8,7 +8,9 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () {
+    NSTimer *timer;
+}
 @property (weak, nonatomic) IBOutlet UIButton *buttonOne;
 @property (weak, nonatomic) IBOutlet UIButton *buttonTwo;
 @property (weak, nonatomic) IBOutlet UIButton *buttonThree;
@@ -96,29 +98,27 @@
 }
 
 -(IBAction)onButtonTapped:(UIButton *)sender {
-      if ([self.whichPlayerLabel.text isEqualToString:@"Your turn!"]) {
+    if ([self.whichPlayerLabel.text isEqualToString:@"Your turn!"]) {
         [sender setTitle:@"X" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
-          NSLog(sender.currentTitle);
-
+        
         if ([self isGameOver:sender.currentTitle]) {
             [self whoWon:sender.currentTitle];
         } else {
-        self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
+            self.whichPlayerLabel.text = [NSString stringWithFormat:@"Computer's turn!"];
         }
     } else {
         [sender setTitle:@"O" forState:UIControlStateNormal];
         [sender setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [sender setEnabled:NO];
-        NSLog(sender.currentTitle);
-
+        
         if ([self isGameOver:sender.currentTitle]){
             [self whoWon:sender.currentTitle];
         } else {
-        self.whichPlayerLabel.text = [NSString stringWithFormat:@"Your turn!"];
+            self.whichPlayerLabel.text = [NSString stringWithFormat:@"Your turn!"];
         }
-        }
+    }
     
 }
 
